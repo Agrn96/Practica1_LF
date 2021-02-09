@@ -1,6 +1,7 @@
+from busquedas import busquedas
 import cargar_Archivo
 import ordenado
-
+import busquedas
 def menu():
     print("Menu Principal")
     print("1. Cargar Archivo de entrada")
@@ -21,7 +22,7 @@ def menu():
         print(list)
     elif(x == 3):
         print("Placeholder")
-        #busquedas()
+        busquedas.busquedas(list, 2)
     elif(x == 4):
         print("Placeholder")
         #Todas
