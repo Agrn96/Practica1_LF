@@ -4,58 +4,85 @@ from tkinter import filedialog
 import busquedas
 import cargar_Archivo
 import ordenado
-import busquedas
-def menu():
-    nombre = []
-    datos = []
-    command = []
+import crear
 
-    print("Menu Principal")
-    print("1. Cargar Archivo de entrada")
-    print("2. Desplegar listas ordenadas")
-    print("3. Desplegar busquedas")
-    print("4. Desplegar todas")
-    print("5. Desplegar todas a archivo")
-    print("6. Salir")
+nombre = []
+datos = []
+command = []
 
-    print("Choose Menu Option: ", end="\t")
-    x = int(input())
-    list = [1,4,2,3,5,6,2,3]
+
+def menu(x):
+    list = [1, 4, 2, 3, 5, 6, 2, 3]
     if(x == 1):
+        nombre.clear()
+        datos.clear()
+        command.clear()
         filename = cargar_Archivo.cargar_Archivo()
         crear_listas(filename, nombre, datos, command)
-        print(filename)
-        print(nombre)
-        print(datos)
-        print(command)
+        filename.close()
     elif(x == 2):
-        print("Placeholder")
-        ordenado.ordenado(list.copy())
-        print(list)
+        for i in range(len(nombre)):
+            for j in range(len(command[i])):
+                if(command[i][j] == "O"):
+                    temp_l = ordenado.ordenado(datos[i].copy())
+                    print(nombre[i], end=': ')
+                    print("ORDENADOS = ", end='')
+                    for i in temp_l:
+                        print(i, end=" ")
+                    print()
+                    break
     elif(x == 3):
-        busquedas.busquedas(list, 2)
+        for i in range(len(nombre)):
+            for j in range(len(command[i])):
+                if(command[i][j] == "B"):
+                    temp_l = busquedas.busquedas(datos[i], command[i][j+1])
+                    print(nombre[i], end=' = ')
+                    for k in datos[i]:
+                        print(k, end=' ')
+
+                    print("BUSQUEDA POSICIONES = ", end='')
+                    for i in temp_l:
+                        print(i, end=' ')
+                    print()
+                    break
+
     elif(x == 4):
-        ordenado.ordenado(list.copy())
-        busquedas.busquedas(list, 2)
-        busquedas.busquedas(list, 3)
+        for i in range(len(nombre)):
+            for j in range(len(command[i])):
+                if(command[i][j] == "O"):
+                    temp_l = ordenado.ordenado(datos[i].copy())
+                    print(nombre[i], end=': ')
+                    print("ORDENADOS = ", end='')
+                    for k in temp_l:
+                        print(k, end=" ")
+                    print()
+                elif(command[i][j] == "B"):
+                    temp_l = busquedas.busquedas(datos[i], command[i][j+1])
+                    print(nombre[i], end=' = ')
+                    for k in datos[i]:
+                        print(k, end=' ')
+
+                    print("BUSQUEDA POSICIONES = ", end='')
+                    for k in temp_l:
+                        print(k, end=' ')
+                    print()
+
     elif(x == 5):
-        ordenado.ordenado(list.copy())
-        busquedas.busquedas(list, 2)
-        busquedas.busquedas(list, 3)
+        crear.crear_html(nombre, datos, command)
     else:
         print("Saliendo del applicacion")
         raise SystemExit(0)
 
+
 def crear_listas(filename, nombre, datos, command):
-    n=0
+    n = 0
     for i in filename:
         datos.append([])
         command.append([])
         txt_c = i.split()
-        txt = i.replace(" ","")
-        print(txt_c)
+        txt = i.replace(" ", "")
         for j in range(len(txt_c)):
-            if(j==0):
+            if(j == 0):
                 nombre.append(txt_c[0])
             elif(txt_c[j] == "BUSCAR"):
                 command[n].append("B")
@@ -75,6 +102,4 @@ def crear_listas(filename, nombre, datos, command):
                     elif(temp_c != ""):
                         datos[n].append(temp_c)
                         temp_c = ""
-                    print(k)
-        n+=1
-
+        n += 1

@@ -5,5 +5,6 @@ def ordenado(list):
         for j in range(0,n-i):
             if list[j] > list[j+1]:
                 list[j], list[j+1] = list[j+1], list[j]
+    return(list)
     
-    print(list)
+    
