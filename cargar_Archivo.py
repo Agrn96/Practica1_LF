@@ -1,5 +1,8 @@
-from tkinter.filedialog import askopenfilename
+from tkinter import *
+from tkinter import filedialog
 
 def cargar_Archivo():
-    filename = askopenfilename()
-    print(filename)
+    filename = filedialog.askopenfile(filetypes=(('text files', 'txt'),))
+    return(filename)
+    
+    
