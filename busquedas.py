@@ -1,7 +1,7 @@
-def busquedas(list, x):
+def busquedas(lista, x):
     position = []
-    for i in range(len(list)):
-        if(list[i] == x):
+    for i in range(len(lista)):
+        if(lista[i] == x):
             position.append(i+1)
     return(position)
     

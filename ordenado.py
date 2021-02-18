@@ -1,10 +1,10 @@
-def ordenado(list):
-    n = len(list) - 1
+def ordenado(lista):
+    n = len(lista) - 1
 
     for i in range(n):
         for j in range(0,n-i):
-            if list[j] > list[j+1]:
-                list[j], list[j+1] = list[j+1], list[j]
-    return(list)
+            if lista[j] > lista[j+1]:
+                lista[j], lista[j+1] = lista[j+1], lista[j]
+    return(lista)
     
     
