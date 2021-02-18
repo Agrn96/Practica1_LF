@@ -1,4 +1,9 @@
 def ordenado(lista):
+    """Funcion para ordenar la lista utilizando sorteo de burbuja
+
+    Args:
+        lista (int[]): Una lista de numeros desordenadas
+    """    
     n = len(lista) - 1
 
     for i in range(n):
